@@ -1,13 +1,12 @@
 {
   "name": "tempalte-create",
+  "author": "Jaroslaw",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node src/server.ts",
     "build": "tsc && shx rm -rf dist/templates && shx cp -r templates dist"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "chakl": "0.0.1-security",
