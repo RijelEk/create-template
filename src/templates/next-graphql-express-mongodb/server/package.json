@@ -1,7 +1,7 @@
 {
-    "name": "memo-server",
+    "name": "<%= projectName %>",
     "version": "1.0.0",
-    "description": "",
+    "description": "<%= projectDescription %>",
     "main": "index.js",
     "scripts": {
       "gen-env": "gen-env-types .env -o src/env.d.ts -e .",
@@ -18,7 +18,7 @@
       "runall2": "npm-run-all --parallel client  dev2"
     },
     "keywords": [],
-    "author": "",
+    "author": "<%= author %>",
     "license": "ISC",
     "mikro-orm": {
       "useTsNode": true,

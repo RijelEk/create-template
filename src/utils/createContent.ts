@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import {CURRENT_DIRECTORY} from "../config";
+import * as template from './template';
 
 const SKIP_FILES = ['node_modules', '.template.json']; // Ignore list
 
@@ -17,6 +18,7 @@ export default function createContent(templatePath: string, projectName: string)
         if (stats.isFile()) {
          
             let contents = fs.readFileSync(origFilePath, 'utf8');
+            contents = template.render(contents, { projectName });
  
             const writePath = path.join(CURRENT_DIRECTORY, projectName, file);
             fs.writeFileSync(writePath, contents, 'utf8');
