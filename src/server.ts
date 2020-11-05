@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import * as inquirer from 'inquirer';
-import chalk from 'chalk';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yargs from 'yargs';
@@ -24,6 +23,7 @@ const QUESTIONS = [
         }
       }
 ];
+
 
 inquirer.prompt(QUESTIONS)
 .then(answers => {
