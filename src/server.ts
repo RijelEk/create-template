@@ -6,6 +6,7 @@ import {QUESTIONS} from "./questions";
 import {CURRENT_DIRECTORY} from "./config";
 import createProject from "./utils/createProject";
 import createContent from "./utils/createContent";
+import postProcess from "./utils/postProcess";
 
 export interface CliOptions {
     projectName: string
@@ -13,14 +14,18 @@ export interface CliOptions {
     templatePath: string
     tartgetPath: string,
     projectDescription: string,
-    authorName: string
+    authorName: string,
+    projectServerName:string,
+    projectClientName: string
 };
 
 inquirer.prompt(QUESTIONS)
 .then(answers => {
 
     const projectChoice = answers['template'];
-    const projectName =answers['name'];
+    const projectName = answers['name'];
+    const projectServerName = answers["name"] + "-server";
+    const projectClientName = answers["name"] + "-client";
     const projectDescription = answers['description'] != "" ? answers['description'] : "Description";
     const authorName = answers['author'] != "" ? answers['author'] : "Author";
     const templatePath = path.join(__dirname, 'templates', projectChoice);
@@ -31,7 +36,9 @@ inquirer.prompt(QUESTIONS)
         authorName,
         templateName: projectChoice,
         templatePath,
-        tartgetPath
+        tartgetPath,
+        projectServerName,
+        projectClientName
     }
 
  
@@ -39,7 +46,16 @@ inquirer.prompt(QUESTIONS)
         return;
     }
 
-    createContent(templatePath, projectName, projectDescription, authorName);
+    createContent(
+        templatePath, 
+        projectName, 
+        projectDescription, 
+        authorName,
+        projectServerName,
+        projectClientName
+    );
+    postProcess(options)
+ 
   
     console.log(options);
     console.log(answers);

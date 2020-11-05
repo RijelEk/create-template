@@ -9,7 +9,9 @@ export default function createContent(
     templatePath: string, 
     projectName: string, 
     projectDescription:string, 
-    authorName:string
+    authorName:string,
+    projectServerName:string,
+    projectClientName: string
     ) {
  
     const filesToCreate = fs.readdirSync(templatePath);
@@ -23,7 +25,7 @@ export default function createContent(
         if (stats.isFile()) {
          
             let contents = fs.readFileSync(origFilePath, 'utf8');
-            contents = template.render(contents, { projectName, projectDescription, authorName });
+            contents = template.render(contents, { projectName, projectDescription, authorName, projectClientName, projectServerName });
  
             const writePath = path.join(CURRENT_DIRECTORY, projectName, file);
             fs.writeFileSync(writePath, contents, 'utf8');
@@ -35,7 +37,9 @@ export default function createContent(
                 path.join(templatePath, file), 
                 path.join(projectName, file),
                 projectDescription,
-                authorName
+                authorName,
+                projectServerName,
+                projectClientName
             );
         }
     });
