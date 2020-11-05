@@ -3,6 +3,7 @@
 import * as inquirer from 'inquirer';
 import * as path from 'path';
 import {QUESTIONS} from "./questions";
+import {CURRENT_DIRECTORY} from "./config";
 import createProject from "./utils/createProject";
 
 export interface CliOptions {
@@ -13,8 +14,6 @@ export interface CliOptions {
     projectDescription: string,
     authorName: string
 };
-
-const CURRENT_DIRECTORY = process.cwd();
 
 inquirer.prompt(QUESTIONS)
 .then(answers => {
