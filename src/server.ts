@@ -1,31 +1,37 @@
 #!/usr/bin/env node
 import * as inquirer from 'inquirer';
-import * as fs from 'fs';
 import * as path from 'path';
-import * as yargs from 'yargs';
+import {QUESTIONS} from "./questions";
 
-const CHOICES = fs.readdirSync(path.join(__dirname, 'templates'));
-const QUESTIONS = [
-    {
-        name: 'template',
-        type: 'list',
-        message: 'What stack would you prefer?',
-        choices: CHOICES
-    },
-    {
-        name: 'name',
-        type: 'input',
-        message: 'Project name:',
-        when: () => !yargs.argv['name'],
-        validate: (input: string) => {
-          if (/^([A-Za-z\-\_\d])+$/.test(input)) return true;
-          else return 'Project name may only include letters, numbers, underscores and hashes.';
-        }
-      }
-];
+export interface CliOptions {
+    projectName: string
+    templateName: string
+    templatePath: string
+    tartgetPath: string,
+    projectDescription: string,
+    authorName: string
+};
 
+const CURRENT_DIRECTORY = process.cwd();
 
 inquirer.prompt(QUESTIONS)
 .then(answers => {
+
+    const projectChoice = answers['template'];
+    const projectName = answers['name'];
+    const projectDescription = answers['description'];
+    const authorName = answers['author'];
+    const templatePath = path.join(__dirname, 'templates', projectChoice);
+    const tartgetPath = path.join(CURRENT_DIRECTORY, projectName);
+    const options: CliOptions = {
+        projectName,
+        projectDescription,
+        authorName,
+        templateName: projectChoice,
+        templatePath,
+        tartgetPath
+    }
+
+    console.log(options);
     console.log(answers);
 });
