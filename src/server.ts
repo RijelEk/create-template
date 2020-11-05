@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+
 import * as inquirer from 'inquirer';
 import * as path from 'path';
 import {QUESTIONS} from "./questions";
+import createProject from "./utils/createProject";
 
 export interface CliOptions {
     projectName: string
@@ -32,6 +34,12 @@ inquirer.prompt(QUESTIONS)
         tartgetPath
     }
 
+ 
+    if (!createProject(tartgetPath)) {
+        return;
+    }
+
+  
     console.log(options);
     console.log(answers);
 });
