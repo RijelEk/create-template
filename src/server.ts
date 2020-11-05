@@ -19,6 +19,11 @@ export interface CliOptions {
     projectClientName: string
 };
 
+//TODO ask PORT for Client and Server
+//TODO ask Database name
+//TODO ask SESSION SECRET code 
+
+
 inquirer.prompt(QUESTIONS)
 .then(answers => {
 
@@ -54,9 +59,10 @@ inquirer.prompt(QUESTIONS)
         projectServerName,
         projectClientName
     );
-    postProcess(options)
- 
-  
+
+    postProcess(options);
+        
+    console.log('\x1b[36m%s\x1b[0m', "Complete!");
     console.log(options);
     console.log(answers);
 });
