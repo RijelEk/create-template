@@ -1,0 +1,19 @@
+
+#cache
+.cache
+
+# node modules
+node_modules
+
+# environments
+.env
+
+
+# next.js
+.next
+out
+
+# production 
+dist
+build
+
