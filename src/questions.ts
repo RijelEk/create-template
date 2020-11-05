@@ -25,21 +25,11 @@ export const QUESTIONS = [
     {
         name: 'description',
         type: 'input',
-        message: 'Project description:',
-        when: () => !yargs.argv['description'],
-        validate: (input: string) => {
-          if (/^([A-Za-z\-\_\d])+$/.test(input)) return true;
-          else return err_mess("Project description");
-        }
+        message: 'Project description:'
     },
     {
         name: 'author',
         type: 'input',
-        message: 'Author name:',
-        when: () => !yargs.argv['author'],
-        validate: (input: string) => {
-          if (/^([A-Za-z\-\_\d])+$/.test(input)) return true;
-          else return err_mess("Author name");
-        }
+        message: 'Author name:'
     }
 ];

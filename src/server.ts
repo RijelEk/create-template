@@ -20,9 +20,9 @@ inquirer.prompt(QUESTIONS)
 .then(answers => {
 
     const projectChoice = answers['template'];
-    const projectName = answers['name'];
-    const projectDescription = answers['description'];
-    const authorName = answers['author'];
+    const projectName =answers['name'];
+    const projectDescription = answers['description'] != "" ? answers['description'] : "Description";
+    const authorName = answers['author'] != "" ? answers['author'] : "Author";
     const templatePath = path.join(__dirname, 'templates', projectChoice);
     const tartgetPath = path.join(CURRENT_DIRECTORY, projectName);
     const options: CliOptions = {
@@ -39,7 +39,7 @@ inquirer.prompt(QUESTIONS)
         return;
     }
 
-    createContent(templatePath, projectName);
+    createContent(templatePath, projectName, projectDescription, authorName);
   
     console.log(options);
     console.log(answers);
