@@ -4,7 +4,7 @@ import {CURRENT_DIRECTORY} from "../config";
 
 const SKIP_FILES = ['node_modules', '.template.json']; // Ignore list
 
-export function createDirectoryContents(templatePath: string, projectName: string) {
+export default function createContent(templatePath: string, projectName: string) {
  
     const filesToCreate = fs.readdirSync(templatePath);
 
@@ -24,7 +24,7 @@ export function createDirectoryContents(templatePath: string, projectName: strin
         } else if (stats.isDirectory()) {
           
             fs.mkdirSync(path.join(CURRENT_DIRECTORY, projectName, file));
-            createDirectoryContents(path.join(templatePath, file), path.join(projectName, file));
+            createContent(path.join(templatePath, file), path.join(projectName, file));
         }
     });
 }

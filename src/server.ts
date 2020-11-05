@@ -5,6 +5,7 @@ import * as path from 'path';
 import {QUESTIONS} from "./questions";
 import {CURRENT_DIRECTORY} from "./config";
 import createProject from "./utils/createProject";
+import createContent from "./utils/createContent";
 
 export interface CliOptions {
     projectName: string
@@ -38,6 +39,7 @@ inquirer.prompt(QUESTIONS)
         return;
     }
 
+    createContent(templatePath, projectName);
   
     console.log(options);
     console.log(answers);
