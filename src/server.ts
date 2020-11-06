@@ -16,23 +16,23 @@ export interface CliOptions {
     projectDescription: string,
     authorName: string,
     projectServerName:string,
-    projectClientName: string
+    projectClientName: string,
+    databaseName: string,
+    sekret:string
 };
 
-//TODO ask PORT for Client and Server
-//TODO ask Database name
-//TODO ask SESSION SECRET code 
-//TODO
 
 inquirer.prompt(QUESTIONS)
 .then(answers => {
 
-    const projectChoice = answers['template'];
+    const projectChoice = answers['template'] === "PostgreSQL" ? "next-graphql-express-postgres" : "next-graphql-express-mongodb";
     const projectName = answers['name'];
     const projectServerName = answers["name"] + "-server";
     const projectClientName = answers["name"] + "-client";
     const projectDescription = answers['description'] != "" ? answers['description'] : "Description";
     const authorName = answers['author'] != "" ? answers['author'] : "Author";
+    const databaseName = answers['databse'] != "" ? answers['databse'] : "database";
+    const sekret = answers['sekret'];
     const templatePath = path.join(__dirname, 'templates', projectChoice);
     const tartgetPath = path.join(CURRENT_DIRECTORY, projectName);
     const options: CliOptions = {
@@ -43,7 +43,9 @@ inquirer.prompt(QUESTIONS)
         templatePath,
         tartgetPath,
         projectServerName,
-        projectClientName
+        projectClientName,
+        databaseName,
+        sekret
     }
 
  
@@ -57,7 +59,9 @@ inquirer.prompt(QUESTIONS)
         projectDescription, 
         authorName,
         projectServerName,
-        projectClientName
+        projectClientName,
+        databaseName,
+        sekret
     );
 
     postProcess(options);

@@ -4,7 +4,9 @@ export interface TemplateData {
     projectDescription: string,
     authorName: string,
     projectServerName: string,
-    projectClientName: string
+    projectClientName: string,
+    databaseName:string,
+    sekret:string
 }
 export function render(content: string, data: TemplateData) {
     return ejs.render(content, data);
