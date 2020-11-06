@@ -22,7 +22,7 @@ export interface CliOptions {
 //TODO ask PORT for Client and Server
 //TODO ask Database name
 //TODO ask SESSION SECRET code 
-
+//TODO
 
 inquirer.prompt(QUESTIONS)
 .then(answers => {
